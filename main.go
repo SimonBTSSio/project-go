@@ -30,7 +30,7 @@ func main() {
 	db.AutoMigrate(&model.Product{})
 	db.AutoMigrate(&model.Payment{})
 	//bc.DelChan()
-	bc := broadcast.NewBroadcaster(20)
+	bc := broadcast.NewBroadcaster(10)
 	//init product
 	productRepository := product.NewRepository(db)
 	productService := product.NewService(productRepository)
