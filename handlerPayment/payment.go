@@ -58,7 +58,7 @@ func (th *paymentHandler) Create(c *gin.Context) {
 	th.bc.Submit(Message{
 		Text:  "Nouveau paiement vient d'etre fait",
 		Name:  newPayment.Product.Name,
-		Price: newPayment.Product.Price,
+		Price: newPayment.PricePaid,
 	})
 
 	response := &Response{
@@ -146,6 +146,12 @@ func (th *paymentHandler) Update(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
+
+	th.bc.Submit(Message{
+		Text:  "Nouveau paiement vient d'etre fait",
+		Name:  payment.Product.Name,
+		Price: payment.PricePaid,
+	})
 
 	response := &Response{
 		Success: true,
